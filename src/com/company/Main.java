@@ -1,6 +1,7 @@
 package com.company;
 import java.util.Scanner;
 
+
 public class Main {
 
     public static int mainMenu() {
@@ -52,29 +53,78 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Boolean quit = false;
-        while (!quit) {
+        Boolean quitMainMenu = false;
+        Boolean quitSubMenu;
+        Utilities utils = new Utilities();
+        while (!quitMainMenu) {
             int choice = mainMenu();
+            quitSubMenu = false;
 
             switch (choice) {
                 case 1:
-                    System.out.println("lending a book");
-                    // call lendMenu()
+                    while (!quitSubMenu) {
+                        utils.clearScreen();
+                        int lendChoice = lendMenu();
+                        switch (lendChoice) {
+                            case 1:
+                                System.out.println("Search a book by title");
+                                break;
+                            case 2:
+                                System.out.println("Search a book by author");
+                                break;
+                            case 3:
+                                System.out.println("Search a book by category");
+                                break;
+                            case 4:
+                                System.out.println("Search a book by ISBN");
+                                break;
+                            case 5:
+                                System.out.println("Go Back");
+                                break;
+                        }
+                        quitSubMenu = true;
+                    }
                     break;
                 case 2:
-                    System.out.println("book management");
-                    // call bookMgmtMenu()
+                    while (!quitSubMenu) {
+                        utils.clearScreen();
+                        int bookMgmtChoice = bookMgmtMenu();
+                        switch (bookMgmtChoice) {
+                            case 1:
+                                System.out.println("Add Book");
+                                break;
+                            case 2:
+                                System.out.println("Edit Book");
+                                break;
+                            case 3:
+                                System.out.println("Delete Book");
+                                break;
+                            case 4:
+                                System.out.println("Go Back");
+                                break;
+                        }
+                        quitSubMenu = true;
+                    }
                     break;
                 case 3:
-                    System.out.println("inventory management");
-                    // call inventoryMgmtMenu()
+                    while (!quitSubMenu) {
+                        utils.clearScreen();
+                        int inventoryMgmtChoice = inventoryMgmtMenu();
+                        switch (inventoryMgmtChoice) {
+                            case 1:
+                                System.out.println("Edit Number of Copies");
+                                break;
+                            case 2:
+                                System.out.println("Go Back");
+                                break;
+                        }
+                        quitSubMenu = true;
+                    }
                     break;
                 case 4:
                     System.out.println("Goodbye!");
-                    quit = true;
+                    quitMainMenu = true;
                     break;
-                default:
-                    // do nothing
             }
         }
     }
